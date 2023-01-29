@@ -1,109 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Tienda de Camisetas</title>
-</head>
-    <body>
-        <div id="container">
-            <!-- cabecera -->
+<h1></h1>
+<?php
+//incluimos el autoload
+require_once 'autoload.php';
+//incluimos la conexion de la db
+require_once './assets/config/db.php';
+//incluimos los parametros de los controladores por defecto, url y acciones
+require_once './assets/config/parameters.php';
+//incluimos el header de la pagina
+require 'views/layout/header.php';
+//incluimos el menu lateral de la pagina
+require 'views/layout/sidebard.php';
 
-            <header id="header">
-                <div id="logo">
-                    <img src="assets/img/ola.png" alt="Camiseta Logo">
-                    <a href="index.php">
-                        Tienda de Camisetas
-                    </a>
-                </div>
-            </header>
+//creamos una funcion que accede al controlador y luego el metodo
+function show_error(){
 
-            <!-- menu -->
+    $error = new errorController();
+    $error->index();
+}
 
-            <nav id="menu">
-                <ul>
-                    <li>
-                        <a href="#">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 3</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria</a>
-                    </li>
-                    <li>
-                        <a href="#">Inicio</a>
-                    </li>
-                </ul>
-            </nav>
+//comprobamos si viene un controlador por get y asignamos a una variable
+if(isset($_GET['controller'])){
 
-            <div id="content">
+    $nombre_controlador = $_GET['controller'].'controller';
 
-                <!-- barra lateral -->
-                <aside id="lateral">
-                    <div id="login" class="block_aside">
-                        <h3>Entrar a la Web</h3>
-                        <form action="" method="POST">
-                            <label for="email">Email</label>
-                            <input type="email"name="email">
+}elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
 
-                            <label for="password">Contrasena</label>
-                            <input type="password" name="password">
+    $nombre_controlador = controller_default;
 
-                            <input type="submit" value="Enviar">
-                        </form>
-                        <ul>
-                            <li>
-                                <a href="#">Mis pedidos</a>
-                            </li>
-                            <li>
-                                <a href="#">Gestionar pedidos</a>
-                            </li>
-                            <li>
-                                <a href="#">Gestionar categorias</a>
-                            </li>
-                        </ul>
-                    </div>
+}else{
 
-                </aside>
+    show_error();
+    exit();
+}
 
-                <!-- contenido central -->
-                <div id="central">
+//comprobamos si el controlador tiene una clase y creamos el objeto
+if(class_exists($nombre_controlador)){
 
-                    <div class="product">
-                        <img src="assets/img/ola.png" alt="">
-                        <h2>Camiseta Azul Ancha</h2>
-                        <p>30$</p>
-                        <a href="">Comprar</a>
-                    </div>
-                    <div class="product">
-                        <img src="assets/img/ola.png" alt="">
-                        <h2>Camiseta Azul Ancha</h2>
-                        <p>30$</p>
-                        <a href="">Comprar</a>
-                    </div>
-                    <div class="product">
-                        <img src="assets/img/ola.png" alt="">
-                        <h2>Camiseta Azul Ancha</h2>
-                        <p>30$</p>
-                        <a href="">Comprar</a>
-                    </div>
+    $contolador = new $nombre_controlador();
+    
+    //invocamos el metodo
+    if(isset($_GET['action']) && method_exists($contolador, $_GET['action'])){
 
-                </div>
-            </div>
-            
-            <!-- footer -->
-            <footer id="footer">
-                <p>Desarrollado Por Angel Ojeda &copy; <?date('Y') ?></p>
-            </footer>
-        </div>
-    </body>
-</html>
+        $action = $_GET['action'];
+        $contolador->$action();
+
+    }elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
+
+        $action_default = action_default;
+        $contolador->$action_default;
+
+    }else{
+
+        show_error();
+
+    }
+
+}else{
+
+    show_error();
+}
+
+//incluimos el pie de pagina
+require 'views/layout/footer.php';
