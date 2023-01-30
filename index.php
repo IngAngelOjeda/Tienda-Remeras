@@ -1,11 +1,13 @@
-<h1></h1>
 <?php
+session_start();
 //incluimos el autoload
 require_once 'autoload.php';
 //incluimos la conexion de la db
-require_once './assets/config/db.php';
+require_once '/assets/config/db.php';
 //incluimos los parametros de los controladores por defecto, url y acciones
-require_once './assets/config/parameters.php';
+require_once '/assets/config/parameters.php';
+//incluimos un archivo donde se encuentras funciones que se usaran en muchas partes de la app
+require_once '/helpers/utils.php ';
 //incluimos el header de la pagina
 require 'views/layout/header.php';
 //incluimos el menu lateral de la pagina

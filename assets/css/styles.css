@@ -22,6 +22,27 @@ a:hover{
     color: #555555;
 }
 
+/* mensajes de alerta */
+.alert_green{
+    color: green;
+}
+
+.alert_green{
+    color: red;
+}
+
+/* TABLA */
+table{
+    text-align: center;
+    width: 100%;
+    border: 1px solid #555;
+}
+
+td{
+    border-top: 1px solid #ccc;
+    padding: 2px;
+}
+
 /* CONTAINER */
 #container{
     width: 80%;
@@ -158,11 +179,16 @@ a:hover{
 }
 
 /* FORMULARIOS */
+.form_container{
+    width: 50%;
+}
+
 label,
 input[type='text'],
 input[type='password'],
+input[type='number'],
 input[type='email']
-select
+select, textarea
 {
     display: block;
     width: 95%;
@@ -172,8 +198,10 @@ select
 
 input[type='text'],
 input[type='password'],
+input[type='number'],
 input[type='email']
-select{
+select, textarea
+{
     border: 1px solid #c9c9c9;
     box-shadow: 0px 0px 2px #ccc inset;
     background: white;
@@ -202,6 +230,18 @@ button{
     background: #2979CD;
     border: 1px solid #11608E;
     cursor: pointer;
+}
+
+.button{
+    background: #33AE3D;
+    color: white !important;
+    text-decoration: none;
+}
+
+.button-small{
+    width: 120px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 label,

@@ -8,38 +8,52 @@
     <title>Tienda de Camisetas</title>
 </head>
     <body>
+
         <div id="container">
+
             <!-- cabecera -->
 
             <header id="header">
+
                 <div id="logo">
+
                     <img src="<?=base_url?>assets/img/ola.png" alt="Camiseta Logo">
+
                     <a href="index.php">
+
                         Tienda 
+
                     </a>
+
                 </div>
+
             </header>
 
+            <?php  $categorias = Utils::showCategorias(); ?>
             <!-- menu -->
 
             <nav id="menu">
+
                 <ul>
+
                     <li>
+
                         <a href="#">Inicio</a>
+
                     </li>
+
+                    <?php while($cat = $categorias->fetch_object()): ?>
+
                     <li>
-                        <a href="#">Categoria 1</a>
+
+                        <a href="#"><?=$cat->nombre; ?></a>
+
                     </li>
-                    <li>
-                        <a href="#">Categoria 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 3</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 4</a>
-                    </li>
+
+                   <?php endwhile; ?>
+
                 </ul>
+
             </nav>
 
             <div id="content">
