@@ -3,8 +3,11 @@
 require_once 'models/usuario.php';
 
 class usuarioController{
+
     public function index(){
+
         echo 'Controlador Usuarios, Accion index'; 
+        
     }
 
     public function registro(){

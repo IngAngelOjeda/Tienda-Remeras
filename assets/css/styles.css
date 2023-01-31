@@ -43,6 +43,10 @@ td{
     padding: 2px;
 }
 
+.thumb{
+    width: 100px;
+}
+
 /* CONTAINER */
 #container{
     width: 80%;
@@ -243,6 +247,18 @@ button{
     text-align: center;
     margin-bottom: 20px;
 }
+
+.button-gestion{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.button-red{
+    background: red;
+    border: 1px solid #cf1717;
+}
+
+
 
 label,
 input[type='button'],

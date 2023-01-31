@@ -30,7 +30,7 @@
 
             </li>
             
-            //Si la session es administrador puede ver los enlases
+            <!-- Si la session es administrador puede ver los enlases -->
             <?php if(isset($_SESSION['admin'])): ?>
 
             <li>
@@ -52,9 +52,9 @@
             </li>
 
             <?php endif; ?>
-            //Fin enlases administrador
+            <!-- Fin enlases administrador -->
             
-            //Si el usuario esta logeado mostrada el boton de cerrar sesion
+            <!-- Si el usuario esta logeado mostrada el boton de cerrar sesion -->
 
             <?php if(isset($_SESSION['identity'])) : ?>
 
