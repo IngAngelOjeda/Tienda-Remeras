@@ -4,7 +4,7 @@
 
     <h1>Editar Producto <?php $pro->nombre; ?></h1>
 
-    <?php  $url_action = base_url.'producto/edit&id_producto='.$pro->id_producto;  ?>
+    <?php  $url_action = base_url.'producto/save&id_producto='.$pro->id_producto;  ?>
 
 <!-- Cuando la variable edit es false se cambiar el action del formulario -->
 

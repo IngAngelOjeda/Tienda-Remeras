@@ -38,7 +38,7 @@
 
                     <li>
 
-                        <a href="#">Inicio</a>
+                        <a href="<?=base_url?>">Inicio</a>
 
                     </li>
 
@@ -46,7 +46,7 @@
 
                     <li>
 
-                        <a href="#"><?=$cat->nombre; ?></a>
+                        <a href="<?=base_url?>categoria/ver&id_categoria=<?=$cat->id_categoria?>"><?=$cat->nombre; ?></a>
 
                     </li>
 

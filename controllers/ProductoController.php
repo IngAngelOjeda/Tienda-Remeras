@@ -6,7 +6,26 @@ class productoController{
     
     public function index(){
 
+        $producto = new Producto();
+        $producto->getRandom(6);
+
         require_once './views/producto/destacados.php';
+
+    }
+
+    public function ver(){
+
+        if(isset($_GET['id_producto'])){
+
+            $producto = new Producto;
+
+            $producto->setId_producto($_GET['id_producto']);
+
+            $pro= $producto->getOne();
+
+        }
+        
+        require_once 'views/producto/ver.php';
 
     }
 
@@ -51,24 +70,40 @@ class productoController{
                 // $producto->setImagen($imagen);
                 
                 //Guardar imagen
-                $file = $_FILES['imagen'];
-                $filename = $file['name'];
-                $mimetype = $file['type'];
+                if(isset($_FILES['imagen'])){
 
-                    $_SESSION['producto'] = "failed";
+                    $file = $_FILES['imagen'];
+                    $filename = $file['name'];
+                    $mimetype = $file['type'];
+
+                        $_SESSION['producto'] = "failed";
+
                     if($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png' || $mimetype == 'image/git'){
 
-                    if(!is_dir('uploads/images')){
+                        if(!is_dir('uploads/images')){
 
-                        mkdir('uploads', 0777, true);
+                            mkdir('uploads', 0777, true);
+
+                        }
+
+                        move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
+
+                        $producto->setImagen($filename);
 
                     }
 
-                    move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
-                    $producto->setImagen($filename);
                 }
 
-                $save = $producto->save();
+                if(isset($_GET['id_producto'])){
+                    $id_producto = ($_GET['id_producto']);
+                    $producto->setId_producto($id_producto);
+                    $save = $producto->edit();
+
+                }else{
+
+                    $save = $producto->save();
+
+                }
 
                 if($save){
 

@@ -106,12 +106,36 @@ class Producto{
 
     }
 
-    public function edit(){
-        $sql = "UPDATE  productos SET nombre = '{$this->getNombre()}' ,id_categoria = '{$this->getId_categoria()}', descripcion = '{$this->getDescripcion()}', precio = {$this->getPrecio()}, stock = {$this->getStock()}, oferta = '{$this->getOferta()}' "
+    public function getRandom($limit){
 
+        $productos = $this->db->query("SELECT * FROM productos ORDER BY  RAND() LIMIT $limit ");
 
-        $sql .= ", imagen = '{$this->getImagen()}', NOW() ";
+        return $productos;
+
+    }
+
+    public function getAllCategory(){
+
+        $sql = "SELECT p. *, c.nombre AS 'catnombre'  FROM productos p "
+                    . "INNER JOIN categorias c ON c.id_categoria = p.id_categoria"
+                    . "WHERE p.id_categoria = {$this->getId_categoria()}" 
+                    . "ORDER BY id_producto DESC" ;
         
+        $productos = $this->db->query($sql);
+
+        return $productos;
+
+    }
+
+    public function edit(){
+        $sql = "UPDATE  productos SET nombre = '{$this->getNombre()}' ,id_categoria = '{$this->getId_categoria()}', descripcion = '{$this->getDescripcion()}', precio = {$this->getPrecio()}, stock = {$this->getStock()}, oferta = '{$this->getOferta()}', fecha =  NOW() ";
+
+        if($this->getImagen() != null){
+
+            $sql .= ", imagen = '{$this->getImagen()}' ";
+        }
+        
+        $sql .= " WHERE id_producto = {$this->id_producto} ; ";
         
         $save = $this->db->query($sql);
 

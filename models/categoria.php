@@ -28,6 +28,13 @@ class Categoria{
         $this->nombre= $this->db->real_escape_string($this->$nombre);
     }
 
+    public function getOne(){
+        $categorias = $this->db->query("SELECT * FROM categorias WHERE id_categoria= {$this->getId_categoria()}");
+
+        return $categorias->fetch_object();
+
+    }
+
     public function getAll(){
         $categorias = $this->db->query("SELECT * FROM categorias ORDER BY id_categoria DESC");
 
