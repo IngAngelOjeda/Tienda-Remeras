@@ -30,7 +30,7 @@
 
             </a>
 
-            <a href="">Comprar</a>
+            <a href="<?=base_url?>carrito/add&id_producto=<?=$productos->id_producto ?>">Comprar</a>
 
         </div>
 

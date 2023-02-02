@@ -35,7 +35,7 @@ a:hover{
 table{
     text-align: center;
     width: 100%;
-    border: 1px solid #555;
+    border-bottom: 1px solid #ccc;
 }
 
 td{
@@ -282,6 +282,14 @@ button
     margin-bottom: 10px;
 }
 
+.img_carrito{
+
+    height: 80px;
+    display: block;
+    margin: 10px auto;
+
+}
+
 .product a{
     color: black;
     text-decoration: none;
@@ -359,4 +367,23 @@ button
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+/* CARRITO */
+
+.total_carrito{
+    width: 295px;
+    float: right;
+}
+
+.total_carrito h3{
+    display: block;
+    float: left;
+    margin-top: 5px;
+}
+
+.button-pedido{
+    display: block;
+    float: right;
+    width: 100px;
 }

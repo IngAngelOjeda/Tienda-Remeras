@@ -6,7 +6,9 @@ class carritoController{
 
     public function index(){
 
-        echo 'Controlador Carrito, Accion index';
+        $carrito = $_SESSION['carrito'];
+
+        require_once 'views/carrito/index.php';
 
     }
 
@@ -22,14 +24,33 @@ class carritoController{
 
         }
 
+        //si vuelve a entrar el mismo id de productro se suma la unidad
         if(isset($_SESSION['carrito'])){
 
-        }else{
+            $counter = 0;
+
+            foreach($_SESSION['carrito'] as $indice =>$elemento){
+
+                if($elemento['id_producto'] == $id_producto){
+
+                    $_SESSION['carrito'][$indice]['unidades']++;
+
+                    $counter++;
+
+                }
+
+            }
+
+        }
+
+        if(!isset($counter) || $counter == 0){
+
             //Obtenemos el producto
             $producto = new Producto();
             $producto->setId_producto($id_producto);
             $producto =  $producto->getOne();
-
+    
+            //Anadimos al carrito
             if(is_object($producto)){
                 
                 $_SESSION['carrito'][] = array(
@@ -38,7 +59,7 @@ class carritoController{
                     "unidades" => 1,
                     "producto" =>$producto
                 );
-
+    
             }
 
         }

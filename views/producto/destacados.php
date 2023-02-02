@@ -23,7 +23,7 @@
 
     </a>
 
-    <a href="">Comprar</a>
+    <a href="<?=base_url?>carrito/add&id_producto=<?=$pro->id_producto ?>">Comprar</a>
 
 </div>
 
